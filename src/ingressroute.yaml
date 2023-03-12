@@ -9,15 +9,15 @@ spec:
   - kind: Rule
     match: Host(`{domain}`)
     services:
-    - name: {name}
+    - name: {name}-service
       port: 80
   tls:
-    secretName: {name}
+    secretName: {name}-cert
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {name}
+  name: {name}-80redirect
 spec:
   entryPoints:
     - web
@@ -28,6 +28,6 @@ spec:
       - name: https-redirect
         namespace: default
     services:
-    - name: {name}
+    - name: {name}-service
       port: 80
 ---
