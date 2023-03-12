@@ -22,3 +22,10 @@ spec:
         ports:
         - containerPort: 80
           name: http
+        volumemounts:
+        - name: apie
+          mountPath: /etc/apie
+      volumes:
+      - name: apie
+        configMap: 
+          name: {name}-config
