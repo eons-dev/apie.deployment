@@ -1,0 +1,33 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {name}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`{domain}`)
+    services:
+    - name: {name}
+      port: 80
+  tls:
+    secretName: {name}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {name}
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+    match: Host(`{domain}`)
+    middlewares:
+      - name: https-redirect
+        namespace: default
+    services:
+    - name: {name}
+      port: 80
+---
