@@ -4,5 +4,5 @@ metadata:
   name: {name}-config
 data:
   config: |
-{configure}
+{re.sub('^', '    ', configure, flags=re.M)}
     
