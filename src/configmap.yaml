@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: {name}-config
 data:
-  config: |
+  config.yaml: |
 {re.sub('^', '    ', configure, flags=re.M)}
     
